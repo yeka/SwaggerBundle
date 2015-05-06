@@ -1,3 +1,7 @@
 yekaswagger_home:
     path: /
     defaults: { _controller: YekaSwaggerBundle:Swagger:index }
+
+yekaswagger_resources:
+    path: /resources
+    defaults: { _controller: YekaSwaggerBundle:Swagger:resources }
