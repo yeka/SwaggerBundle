@@ -1,0 +1,3 @@
+yekaswagger_home:
+    path: /
+    defaults: { _controller: YekaSwaggerBundle:Swagger:index }
