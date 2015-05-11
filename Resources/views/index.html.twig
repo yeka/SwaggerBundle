@@ -21,7 +21,7 @@
     <script src='{{ asset('bundles/yekaswagger/lib/highlight.7.3.pack.js') }}' type='text/javascript'></script>
 
     <!-- enabling this will enable oauth2 implicit scope support -->
-    <script src='lib/swagger-oauth.js' type='text/javascript'></script>
+    <script src='{{ asset('bundles/yekaswagger/lib/swagger-oauth.js') }}' type='text/javascript'></script>
     <script type="text/javascript">
         $(function () {
             var url = window.location.search.match(/url=([^&]+)/);

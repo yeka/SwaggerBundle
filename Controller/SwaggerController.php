@@ -5,7 +5,7 @@ namespace Yeka\SwaggerBundle\Controller;
 use Swagger\Swagger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SwaggerController extends Controller
 {
@@ -14,9 +14,19 @@ class SwaggerController extends Controller
         return $this->render('YekaSwaggerBundle::index.html.twig');
     }
 
-    public function resourcesAction()
+    public function resourcesAction($resourceName = null)
     {
-        return new Response($this->getSwagger());
+        $swagger = $this->getSwagger();
+        if ($resourceName) {
+            try {
+                $resources = $swagger->getResource($resourceName);
+            } catch (\Exception $e) {
+                $resources = $swagger->getResource('/'.$resourceName);
+            }
+        } else {
+            $resources = $swagger->getResourceList();
+        }
+        return new JsonResponse($resources);
     }
 
     public function getSwagger()
@@ -32,7 +42,6 @@ class SwaggerController extends Controller
                 $dirs[] = $locator->locate('@'.$bundle.'/Controller');
             }
         }
-        $swagger = new Swagger($dirs);
-        return $swagger->getResourceList();
+        return new Swagger($dirs);
     }
 }
