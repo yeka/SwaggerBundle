@@ -1,7 +1,7 @@
 {
     "name": "yeka/swagger-bundle",
     "require": {
-        "zircote/swagger-php": "2.*@dev",
+        "zircote/swagger-php": "0.9.6",
         "symfony/twig-bundle": "~2.1",
         "symfony/framework-bundle": "~2.1"
     },

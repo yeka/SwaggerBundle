@@ -2,6 +2,7 @@
 
 namespace Yeka\SwaggerBundle\Controller;
 
+use Swagger\Swagger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +32,7 @@ class SwaggerController extends Controller
                 $dirs[] = $locator->locate('@'.$bundle.'/Controller');
             }
         }
-        return \Swagger\scan($dirs, []);
+        $swagger = new Swagger($dirs);
+        return $swagger->getResourceList();
     }
 }
